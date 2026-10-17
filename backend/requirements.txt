@@ -1,0 +1,12 @@
+# Dependensi backend (FastAPI) — dipasang pada tahap backend.
+# Versi akan dikunci saat integrasi backend dimulai.
+#
+# fastapi
+# uvicorn[standard]
+# pydantic
+# python-multipart   # untuk unggahan file CSV
+# scikit-learn
+# pandas
+# joblib
+# pytest
+# httpx              # untuk tes API

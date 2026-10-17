@@ -1,0 +1,235 @@
+/* ==========================================================================
+   Design tokens — gelap ala Steam, gaya modern minimalist
+   ========================================================================== */
+:root {
+  --color-bg: #171a21;
+  --color-surface: #1b2838;
+  --color-surface-alt: #23364a;
+  --color-input-bg: #131a23;
+
+  --color-accent: #66c0f4;
+  --color-accent-hover: #86d0fa;
+
+  --color-text: #ffffff;
+  --color-text-muted: #c7d5e0;
+  --color-text-dim: #8f98a0;
+
+  --color-border: rgba(199, 213, 224, 0.16);
+  --color-border-strong: rgba(199, 213, 224, 0.34);
+
+  --color-positive: #56b870;
+  --color-positive-soft: rgba(86, 184, 112, 0.12);
+  --color-negative: #e0685f;
+  --color-negative-soft: rgba(224, 104, 95, 0.12);
+
+  --color-on-accent: #0b1116;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
+    sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono',
+    monospace;
+
+  --radius: 8px;
+  --radius-sm: 4px;
+
+  --chat-width: 760px;
+  --container-width: 1080px;
+  --transition: 160ms ease;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Layout
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+.main {
+  flex: 1;
+  padding-top: 48px;
+  /* Ruang agar konten terakhir tidak tertutup dock composer yang fixed. */
+  padding-bottom: 230px;
+}
+
+/* ==========================================================================
+   Tombol — sederhana, tanpa efek berlebih
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 9px 16px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background var(--transition),
+    border-color var(--transition),
+    color var(--transition);
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--color-surface-alt);
+  border-color: var(--color-border-strong);
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn--sm {
+  min-height: 34px;
+  padding: 6px 12px;
+  font-size: 0.82rem;
+}
+
+/* ==========================================================================
+   Tag
+   ========================================================================== */
+.tag {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.tag--positive {
+  background: var(--color-positive-soft);
+  color: var(--color-positive);
+}
+
+.tag--negative {
+  background: var(--color-negative-soft);
+  color: var(--color-negative);
+}
+
+/* Penanda hasil simulasi — mono, garis putus-putus = bukan model sungguhan */
+.tag-sim {
+  padding: 3px 9px;
+  border: 1px dashed rgba(102, 192, 244, 0.45);
+  border-radius: var(--radius-sm);
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+}
+
+/* ==========================================================================
+   Animasi
+   ========================================================================== */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes progress-slide {
+  0% {
+    left: -35%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
