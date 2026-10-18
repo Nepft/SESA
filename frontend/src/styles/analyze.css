@@ -210,6 +210,10 @@
   cursor: not-allowed;
 }
 
+.composer__send:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
 .composer__overlay {
   position: absolute;
   inset: 0;
@@ -316,8 +320,33 @@
   margin-top: 0;
 }
 
-.result {
-  animation: fade-up 260ms ease-out both;
+/* Hasil tampil bertahap dari atas ke bawah (delay per posisi anak) */
+.result > * {
+  animation: fade-up 280ms var(--ease-out) both;
+}
+
+.result > *:nth-child(1) {
+  animation-delay: 0ms;
+}
+
+.result > *:nth-child(2) {
+  animation-delay: 60ms;
+}
+
+.result > *:nth-child(3) {
+  animation-delay: 120ms;
+}
+
+.result > *:nth-child(4) {
+  animation-delay: 180ms;
+}
+
+.result > *:nth-child(5) {
+  animation-delay: 240ms;
+}
+
+.result > *:nth-child(n + 6) {
+  animation-delay: 300ms;
 }
 
 .result__head {
@@ -489,6 +518,8 @@
     var(--color-positive) 0deg var(--positive-angle, 0deg),
     var(--color-negative) var(--positive-angle, 0deg) 360deg
   );
+  animation: scale-in 320ms var(--ease-out) both;
+  animation-delay: 220ms;
 }
 
 .donut::before {
@@ -594,6 +625,9 @@
 .table-wrap {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  /* Render hanya yang terlihat — mempercepat paint awal halaman */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 480px;
 }
 
 .table {
@@ -617,6 +651,17 @@
   font-size: 0.8rem;
   font-weight: 500;
   color: var(--color-text-dim);
+}
+
+/* Baris masuk bertahap saat ganti halaman (--i diisi per baris dari JSX) */
+.table tbody tr {
+  animation: row-in 240ms var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 25ms);
+  transition: background var(--transition);
+}
+
+.table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.025);
 }
 
 .table tbody tr:last-child td {

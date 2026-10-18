@@ -35,6 +35,8 @@
   --chat-width: 760px;
   --container-width: 1080px;
   --transition: 160ms ease;
+  /* Easing lembut untuk animasi masuk */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* ==========================================================================
@@ -146,6 +148,11 @@ h3 {
   cursor: not-allowed;
 }
 
+/* Rasa "ditekan" — transform saja, tanpa layout shift */
+.btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
 .btn--sm {
   min-height: 34px;
   padding: 6px 12px;
@@ -192,6 +199,30 @@ h3 {
   from {
     opacity: 0;
     transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Donut chart masuk: sedikit mengecil lalu mencapai ukuran penuh */
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Baris tabel masuk bertahap — delay diatur per baris lewat --i */
+@keyframes row-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
   }
   to {
     opacity: 1;

@@ -79,6 +79,7 @@ Gaya yang berlaku: **modern minimalist**. Empat prinsip yang diurutkan berdasark
 Pendukung:
 - Hasil analisis tampil **di atas** composer yang fixed di bagian bawah viewport (gaya chat).
 - Animasi hanya sederhana (fade, slide pendek, transisi halus); selalu hormati `prefers-reduced-motion`. Jangan membuat animasi panjang atau berlebihan.
+- **Kebijakan animasi:** utamakan property `transform` dan `opacity` (GPU compositing, tanpa layout/paint); durasi 150–300ms; tanpa library animasi (jangan menambah `framer-motion`, GSAP, dsb. hanya demi efek yang bisa ditulis dengan CSS); animasi tidak boleh menunda paint pertama halaman.
 - Hindari glassmorphism berat, efek neon, gradient mencolok, dan dekorasi berlebihan.
 
 ### Identitas warna: Steam

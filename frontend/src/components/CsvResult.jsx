@@ -182,9 +182,10 @@ export default function CsvResult({ result, fileName }) {
                     <th scope="col">Sentimen</th>
                   </tr>
                 </thead>
-                <tbody>
-                  {pageRows.map((row) => (
-                    <tr key={row.rowNumber}>
+                {/* key per halaman agar animasi masuk baris berjalan ulang tiap ganti halaman */}
+                <tbody key={currentPage}>
+                  {pageRows.map((row, index) => (
+                    <tr key={row.rowNumber} style={{ '--i': index }}>
                       <td className="table__num">{row.rowNumber}</td>
                       <td className="table__text">{row.text}</td>
                       <td>
